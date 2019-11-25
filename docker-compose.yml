@@ -1,0 +1,40 @@
+ 
+version: "3"
+
+services:
+  api:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    command: bash -c "bundle install && bundle exec rails s -p 3000 -b 0.0.0.0"
+    volumes:
+      - ./api:/myapp
+      - bundle_path:/bundle
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      BUNDLE_PATH: /bundle/vendor
+    networks:
+      - app-network
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: bash -c "yarn install && yarn serve"
+    tty: true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+volumes:
+  bundle_path:
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
