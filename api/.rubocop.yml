@@ -24,6 +24,8 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   IgnoredPatterns:
-    - ^#!
+    - "^"
+    - "#"
+    - "!"
   Exclude:
     - "db/seeds.rb"
