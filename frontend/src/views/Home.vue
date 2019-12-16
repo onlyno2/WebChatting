@@ -7,6 +7,7 @@
       src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1615965675211633&height=50&width=50&ext=1577870214&hash=AeQGmQqVLwBozM86"
       alt="asd"
     />
+    <v-btn text large color="error">Hello</v-btn>
   </div>
 </template>
 
