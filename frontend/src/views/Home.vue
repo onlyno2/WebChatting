@@ -32,7 +32,7 @@ export default {
           {}
         )
         .then(response => {
-          console.log(response.data);
+          this.$store.commit('token/TOKEN', response.data.data);
         })
         .catch(error => {
           console.log(error);
