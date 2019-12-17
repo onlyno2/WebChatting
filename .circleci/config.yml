@@ -15,9 +15,6 @@ jobs:
           name: start containers
           command: docker-compose up -d
       - run:
-          name: check lint
-          command: docker-compose run api rubocop
-      - run:
           name: check test
           command: docker-compose run api rspec
       - run:

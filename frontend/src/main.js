@@ -5,17 +5,20 @@ import store from "./store";
 import axios from "axios";
 import regeneratorRuntime from "regenerator-runtime";
 import Vuetify from "vuetify";
+import i18n from "./plugins/locales/i18n";
 
 Vue.use(Vuetify);
 export default new Vuetify({});
 Vue.use(regeneratorRuntime);
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
   axios,
   vuetify: new Vuetify(),
+  i18n,
   render: h => h(App)
 }).$mount("#app");
