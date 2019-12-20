@@ -5,7 +5,7 @@
     <v-btn large color="error" @click="changeLocale('vi')">Vi</v-btn>
     <v-btn large color="success" @click="changeLocale('en')">En</v-btn>
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <VFacebookLogin app-id="480114589280370" @login="test"></VFacebookLogin>
+    <VFacebookLogin app-id="480114589280370" @login="login"></VFacebookLogin>
     <img
       src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1615965675211633&height=50&width=50&ext=1577870214&hash=AeQGmQqVLwBozM86"
       alt="asd"
@@ -23,11 +23,10 @@ export default {
   name: "home",
   components: {
     HelloWorld,
-    VFacebookLogin
+    VFacebookLogin,
   },
   methods: {
-    test(res) {
-      console.log(res);
+    login(res) {
       this.$axios
         .post(
           "http://localhost:3000/auth/facebook_login",
@@ -36,6 +35,7 @@ export default {
         )
         .then(response => {
           this.$store.commit("token/TOKEN", response.data.data);
+          this.$alertify.success("Login success");
         })
         .catch(error => {
           console.log(error);
@@ -43,7 +43,7 @@ export default {
     },
     changeLocale(locale) {
       i18n.locale = locale;
-    }
-  }
+    },
+  },
 };
 </script>
