@@ -2,7 +2,8 @@ require 'koala'
 
 class AuthHelper
   def self.current_user(token)
-    JsonWebToken.decode(token)
+    id = JsonWebToken.decode(token)['payload']
+    User.find_by(id: id)
   end
 
   class FacebookLogin

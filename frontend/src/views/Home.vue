@@ -23,7 +23,7 @@ export default {
   name: "home",
   components: {
     HelloWorld,
-    VFacebookLogin,
+    VFacebookLogin
   },
   methods: {
     login(res) {
@@ -43,7 +43,7 @@ export default {
     },
     changeLocale(locale) {
       i18n.locale = locale;
-    },
-  },
+    }
+  }
 };
 </script>
