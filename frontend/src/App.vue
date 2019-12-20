@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <div id="nav">
-        <router-link to="/">{{ $t('home') }}</router-link> |
+        <router-link to="/">{{ $t("home") }}</router-link> |
         <router-link to="/about">About</router-link>
       </div>
       <router-view />
