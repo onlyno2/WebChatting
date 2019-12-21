@@ -1,12 +1,12 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import axios from "axios";
-import regeneratorRuntime from "regenerator-runtime";
-import Vuetify from "vuetify";
-import i18n from "@/plugins/locales/i18n";
-import alertify from "@/plugins/alertify/alertify";
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import axios from 'axios';
+import regeneratorRuntime from 'regenerator-runtime';
+import Vuetify from 'vuetify';
+import i18n from '@/plugins/locales/i18n';
+import alertify from '@/plugins/alertify/alertify';
 
 Vue.use(Vuetify);
 export default new Vuetify({});
@@ -23,4 +23,4 @@ new Vue({
   i18n,
   alertify,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app');

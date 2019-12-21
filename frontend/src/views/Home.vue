@@ -15,12 +15,12 @@
 
 <script>
 // @ is an alias to /src
-import i18n from "@/plugins/locales/i18n.js";
-import HelloWorld from "@/components/HelloWorld.vue";
-import { VFBLogin as VFacebookLogin } from "vue-facebook-login-component";
+import i18n from '@/plugins/locales/i18n.js';
+import HelloWorld from '@/components/HelloWorld.vue';
+import { VFBLogin as VFacebookLogin } from 'vue-facebook-login-component';
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
     HelloWorld,
     VFacebookLogin
@@ -29,13 +29,13 @@ export default {
     login(res) {
       this.$axios
         .post(
-          "http://localhost:3000/auth/facebook_login",
+          'http://localhost:3000/auth/facebook_login',
           { credential: res },
           {}
         )
         .then(response => {
-          this.$store.commit("token/TOKEN", response.data.data);
-          this.$alertify.success("Login success");
+          this.$store.commit('token/TOKEN', response.data.data);
+          this.$alertify.success('Login success');
         })
         .catch(error => {
           console.log(error);

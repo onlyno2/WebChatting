@@ -7,5 +7,10 @@ Rails.application.routes.draw do
       post "/facebook_login", to: "facebook#login"
       get "/test", to: "auth#test"
     end
+
+    # resource users api
+    resources :users
+    # resource posts api
+    resources :posts
   end
 end

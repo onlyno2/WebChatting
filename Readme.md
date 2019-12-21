@@ -1,5 +1,5 @@
 # Project description
-Chatwork clone :smiley:
+Simple social network :smiley:
 
 # Project structure
 ## Api
