@@ -35,8 +35,7 @@ Simple social network :smiley:
 |---|---|---|---|
 |index/show|get|:ok|200|
 |create|post|:created|201|
-|update|put|:ok|200|
-|destroy|delete|:no_content|204|
+|update/delete|put/destroy|:ok|200|
 
 ## response format
 ```json

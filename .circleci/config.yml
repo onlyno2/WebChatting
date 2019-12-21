@@ -15,5 +15,11 @@ jobs:
           name: start containers
           command: docker-compose up -d
       - run:
+          name: check lint
+          command: docker-compose run api bundle exec rubocop
+      - run:
+          name: test api
+          command: docker-compose run api bundle exec rspec
+      - run:
           name: shutdown container
           command: docker-compose down

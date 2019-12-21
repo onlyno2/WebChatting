@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :users
     # resource posts api
     resources :posts
+    # resource likes api
+    resources :likes, only: %i[create]
   end
 end
