@@ -12,14 +12,11 @@ Rails.application.routes.draw do
     resources :users
     # resource posts api
     resources :posts
-<<<<<<< 6cedf02dcaf989d9093aec98f0fdc7edac88e15c
     # resource likes api
     resources :likes, only: %i[create destroy]
     # resource image api
     resources :images, only: %i[create]
-=======
     # contact
     post "/contact", to:"static_pages#contact"
->>>>>>> NavBar and ContactMailing
   end
 end
