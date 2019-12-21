@@ -1,5 +1,5 @@
-import Vue from "vue";
-import VueAlertify from "vue-alertify";
+import Vue from 'vue';
+import VueAlertify from 'vue-alertify';
 
 const opt = {
   autoReset: true,
@@ -19,33 +19,33 @@ const opt = {
   preventBodyShift: false, // <== global default not per instance, applies to all dialogs
   resizable: true,
   startMaximized: false,
-  transition: "pulse",
+  transition: 'pulse',
   // notifier defaults
   notifier: {
     // auto-dismiss wait time (in seconds)
     delay: 4,
     // default position
-    position: "top-right",
+    position: 'top-right',
     // adds a close button to notifier messages
     closeButton: false
   },
   // language resources
   glossary: {
     // dialogs default title
-    title: "AlertifyJS",
+    title: 'AlertifyJS',
     // ok button text
-    ok: "OK",
+    ok: 'OK',
     // cancel button text
-    cancel: "Cancel"
+    cancel: 'Cancel'
   },
   // theme settings
   theme: {
     // class name attached to prompt dialog input textbox.
-    input: "ajs-input",
+    input: 'ajs-input',
     // class name attached to ok button
-    ok: "ajs-ok",
+    ok: 'ajs-ok',
     // class name attached to cancel button
-    cancel: "ajs-cancel"
+    cancel: 'ajs-cancel'
   }
 };
 

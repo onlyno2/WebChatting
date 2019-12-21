@@ -22,6 +22,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     command: bash -c "yarn install && yarn serve"
+    restart: always
     tty: true
     volumes:
       - ./frontend:/app

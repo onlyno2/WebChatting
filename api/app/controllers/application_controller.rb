@@ -13,6 +13,6 @@ class ApplicationController < ActionController::API
         request.headers['Authorization'].split(' ').last
       )
     end
-    error_response('Not Authorized', 404) unless @current_user
+    error_response('Not Authorized', 401) unless @current_user
   end
 end

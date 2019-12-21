@@ -4,6 +4,6 @@ class ResponseHelper
   end
 
   def self.success(message)
-    { data: message }
+    { message: message }
   end
 end
