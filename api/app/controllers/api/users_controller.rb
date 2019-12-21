@@ -13,7 +13,7 @@ module Api
 
     def update
       if @current_user.update(update_param)
-        success_response('Update success', :no_content)
+        success_response('Update success', :ok)
       else
         error_response('Update failed', :unprocessable_entity)
       end
@@ -21,9 +21,9 @@ module Api
 
     def destroy
       if @current_user.destroy
-        success_response('Delete success', :no_content)
+        success_response('Delete success', :ok)
       else
-        error_response('Delete failed', :unprocessable_entity)
+        error_response('Delete failed', :bad_request)
       end
     end
 

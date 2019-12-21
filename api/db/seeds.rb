@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'Creating users'
 100.times do |i|
-  puts "#{i}"
+  puts i.to_s
   User.create(
     name: "User#{i}",
     email: "User#{i}@example.com",
