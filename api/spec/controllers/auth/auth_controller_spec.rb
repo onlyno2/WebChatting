@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe Auth::AuthController, type: :controller do
+RSpec.describe Api::Auth::AuthController, type: :controller do
 end
