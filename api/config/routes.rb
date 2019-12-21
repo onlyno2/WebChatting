@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     # resource posts api
     resources :posts
     # resource likes api
-    resources :likes, only: %i[create]
+    resources :likes, only: %i[create destroy]
+    # resource image api
+    resources :images, only: %i[create]
   end
 end
