@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <div id="nav">
-        <router-link to="/">{{ $t("home") }}</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
+      <nav-bar></nav-bar>
       <router-view />
     </v-app>
   </div>
@@ -32,3 +29,11 @@
   }
 }
 </style>
+<script>
+import NavBar from './views/NavBar.vue';
+export default {
+  components: {
+        'NavBar': NavBar,
+  },
+}
+</script>
