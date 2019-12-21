@@ -5,7 +5,8 @@ import token from "./modules/token";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+  },
   mutations: {},
   actions: {},
   modules: {

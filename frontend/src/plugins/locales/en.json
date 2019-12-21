@@ -1,3 +1,10 @@
 {
-    "home": "home"
+    "home": "Home",
+    "about": "About",
+    "signup": "Sign up",
+    "signin": "Sign in",
+    "contact": "Contact",
+    "name": "Name",
+    "content": "Content",
+    "submit": "Submit"
 }

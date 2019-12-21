@@ -1,3 +1,10 @@
 {
-    "home": "Trang chủ"
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "signup": "Đăng ký",
+    "signin": "Đăng nhập",
+    "contact": "Liên hệ",
+    "name": "Tên",
+    "content": "Nội dung",
+    "submit": "Gửi"
 }
