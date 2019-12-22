@@ -23,7 +23,7 @@
                 :rules="passRules"
                 :type="show1 ? 'text' : 'password'"
                 name="input-10-1"
-                label="Password"
+                :label="$t('password')"
                 counter
                 outlined
                 @click:append="show1 = !show1"

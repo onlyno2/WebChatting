@@ -31,10 +31,14 @@
 }
 </style>
 <script>
+import i18n from '@/plugins/locales/i18n.js';
 import NavBar from './views/NavBar.vue';
 export default {
   components: {
         'NavBar': NavBar,
   },
+  beforeMount() {
+    i18n.locale = localStorage.getItem("locale");
+  }
 }
 </script>

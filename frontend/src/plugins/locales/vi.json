@@ -9,9 +9,16 @@
     "submit": "Gửi",
     "login": "Đăng Nhập",
     "password": "Mật khẩu",
+    "passwordConfirm": "Nhập lại mật khẩu",
     "logout": "Đăng xuất",
     "likeCount": "Lượt thích",
     "dislikeCount": "Lượt không thích",
     "post": "Tạo",
-    "createPost": "Tạo bài đăng mới"
+    "createPost": "Tạo bài đăng mới",
+    "profile": "Hồ sơ",
+    "add": "Thêm",
+    "searchplace": "Tìm và thêm vị trí",
+    "place": "Vị trí của chúng tôi",
+    "editProfile": "Sửa hồ sơ",
+    "fileInput": "Thêm ảnh"
 }

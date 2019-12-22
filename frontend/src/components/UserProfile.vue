@@ -1,11 +1,9 @@
 <template>
   <v-card>
     <v-container>
-      <div
-        class="purple lighten-5 text-center font-weight-bold display-2 profile"
-      >
-        <span>PROFILE</span>
-      </div>
+      <div class="purple lighten-5 text-center font-weight-bold display-2 profile">
+       <span>{{ $t('profile') }}</span>
+      </div>  
       <v-row align="center" justify="center">
         <v-col md="4">
           <v-avatar size="200">
@@ -39,7 +37,7 @@
       </v-row>
       <v-row class="mt-4" align="center" justify="center" v-if="loggedIn">
         <v-col md="4">
-          <v-btn block to="/edit">Edit</v-btn>
+          <v-btn block :to="{ name: 'editProfile', params: { id: editId }}">{{ $t('editProfile') }}</v-btn>
         </v-col>
         <v-col md="4">
           <v-btn block color="success" to="/createpost">{{ $t('createPost') }}</v-btn>
@@ -53,7 +51,8 @@
 export default {
   data() {
     return {
-      user: {}
+      user: {},
+      editId: null,
     };
   },
   methods: {},
@@ -70,6 +69,7 @@ export default {
   beforeMount() {
     if (!this.userId) {
       this.userId = this.$route.params.id;
+      this.editId = this.userId;
     }
 
     this.$axios

@@ -44,6 +44,7 @@ export default {
         });
     },
     changeLocale(locale) {
+      localStorage.setItem("locale", locale);
       i18n.locale = locale;
     }
   }
