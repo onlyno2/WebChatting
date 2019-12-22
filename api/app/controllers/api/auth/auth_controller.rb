@@ -10,11 +10,14 @@ module Api
 
       def login
         user = User.find_by(email: auth_params[:email])
-        if user.authenticate(auth_params[:password])
+        if user
+          unless user.authenticate(auth_params[:password])
+            error_response('Authenticate failed', :unauthorized)
+          end
           token = JsonWebToken.encode(payload: user.id)
           success_response(token)
         else
-          error_response('Authenticate failed')
+          error_response('Authenticate failed', :unauthorized)
         end
       end
 

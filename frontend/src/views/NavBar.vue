@@ -17,9 +17,11 @@
           <v-list-item-content>{{ $t('contact') }}</v-list-item-content>
         </v-list-item>
         <v-list-item to="/signup">
-          <v-list-item-content>{{ $t('signup') }}</v-list-item-content>
+          <v-list-item-content v-if="!loggedIn">{{
+            $t('signup')
+          }}</v-list-item-content>
         </v-list-item>
-        <v-list-item to="/login">
+        <v-list-item to="/login" v-if="!loggedIn">
           <v-list-item-content>{{ $t('signin') }}</v-list-item-content>
         </v-list-item>
       </v-list>
@@ -54,14 +56,19 @@
           {{ $t('contact') }}
         </v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="hidden-xs-only">
+      <v-toolbar-items class="hidden-xs-only" v-if="!loggedIn">
         <v-btn text to="/signup">
           {{ $t('signup') }}
         </v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="hidden-xs-only">
+      <v-toolbar-items class="hidden-xs-only" v-if="!loggedIn">
         <v-btn text to="/login">
           {{ $t('signin') }}
+        </v-btn>
+      </v-toolbar-items>
+       <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+        <v-btn text @click="logout">
+          {{ $t('logout') }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -69,14 +76,22 @@
 </template>
 <script>
 export default {
-  mounted() {
-    console.log(this.$t('home'));
-  },
   data() {
     return {
       appTitle: 'Web Chatting',
       sidebar: false
     };
+  },
+  methods: {
+    logout() {
+      this.$store.commit('token/LOG_OUT');
+    }
+  },
+  computed: {
+    loggedIn() {
+      let token = this.$store.getters['token/getToken'];
+      return !!token;
+    }
   }
 };
 </script>
