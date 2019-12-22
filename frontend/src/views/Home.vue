@@ -42,7 +42,6 @@ export default {
         });
     },
     changeLocale(locale) {
-      this.$store.commit('locale/LOCALE', locale);
       i18n.locale = locale;
     }
   }

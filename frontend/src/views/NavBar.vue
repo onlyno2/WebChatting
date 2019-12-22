@@ -40,27 +40,27 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat text to="/">
+        <v-btn text to="/">
           {{ $t('home') }}
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat text to="/about">
+        <v-btn text to="/about">
           {{ $t('about') }}
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat text to="/contact">
+        <v-btn text to="/contact">
           {{ $t('contact') }}
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat text to="/about">
+        <v-btn text to="/about">
           {{ $t('signup') }}
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat text to="/about">
+        <v-btn text to="/about">
           {{ $t('signin') }}
         </v-btn>
       </v-toolbar-items>
