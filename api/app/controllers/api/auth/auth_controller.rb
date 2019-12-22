@@ -14,8 +14,8 @@ module Api
           unless user.authenticate(auth_params[:password])
             error_response('Authenticate failed', :unauthorized)
           end
-          token = JsonWebToken.encode(payload: user.id)
-          success_response(token)
+          response = { token: JsonWebToken.encode(payload: user.id), user_id: user.id }
+          success_response(response)
         else
           error_response('Authenticate failed', :unauthorized)
         end

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     end
 
     # resource users api
-    resources :users
+    resources :users do
+      resources :user_posts, only: %i[index]
+    end
     # resource posts api
     resources :posts
     # resource likes api
