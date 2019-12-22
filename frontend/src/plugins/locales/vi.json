@@ -6,5 +6,7 @@
     "contact": "Liên hệ",
     "name": "Tên",
     "content": "Nội dung",
-    "submit": "Gửi"
+    "submit": "Gửi",
+    "login": "Đăng Nhập",
+    "password": "Mật khẩu"
 }
