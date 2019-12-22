@@ -92,7 +92,9 @@ export default {
           {}
         )
         .then(response => {
-          this.$store.commit('token/TOKEN', response.data.message);
+          console.log(response.data.message);
+          this.$store.commit('token/TOKEN', response.data.message.token);
+          this.$store.commit('token/USER_ID', response.data.message.user_id);
           this.$alertify.success('Login success');
           this.$router.push('home');
           this.loading = false;
@@ -112,7 +114,8 @@ export default {
         })
         .then(response => {
           console.log(response.data.message);
-          this.$store.commit('token/TOKEN', response.data.message);
+          this.$store.commit('token/TOKEN', response.data.message.token);
+          this.$store.commit('token/USER_ID', response.data.message.user_id);
           this.$alertify.success('Success');
           this.$router.push('home');
         })
