@@ -15,6 +15,7 @@
                 label="E-mail"
                 outlined
                 required
+                clearable
               ></v-text-field>
               <v-text-field
                 v-model="password"

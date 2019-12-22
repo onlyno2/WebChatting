@@ -15,6 +15,7 @@
                 label="Name"
                 outlined
                 required
+                clearable
               ></v-text-field>
               <v-text-field
                 v-model="email"
@@ -22,6 +23,7 @@
                 label="E-mail"
                 outlined
                 required
+                clearable
               ></v-text-field>
               <v-text-field
                 v-model="password"
@@ -34,12 +36,22 @@
                 outlined
                 @click:append="show1 = !show1"
               ></v-text-field>
+              <v-text-field
+                v-model="passwordConfirm"
+                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="passConfirmRules"
+                :type="show2 ? 'text' : 'password'"
+                name="input-10-2"
+                label="Confirm password"
+                counter
+                outlined
+              ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-btn
               :disabled="!valid"
-              color="success"
+              color="primary"
               class="mx-auto"
               @click="submitForm()"
             >
@@ -47,9 +59,6 @@
             </v-btn>
           </v-card-actions>
           <v-divider></v-divider>
-          <v-card-actions>
-            <VFacebookLogin app-id="480114589280370" @login="login" class="mx-auto mb-3"></VFacebookLogin>
-          </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" sm="3"> </v-col>
@@ -58,16 +67,15 @@
 </template>
 
 <script>
-  import { VFBLogin as VFacebookLogin } from 'vue-facebook-login-component';
-
   export default {
     data() {
       return {
         valid: true,
+        show1: false,
+        show2: false,
         email: '',
         password: '',
         name: '',
-        show1: false,
         passRules: [
           value => !!value || 'Required.'
         ],
@@ -77,27 +85,10 @@
         emailRules: [
           v => !!v || 'E-mail is required',
           v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+        ],
+        passConfirmRules: [
+          v => this.password == v || 'Password must match'
         ]
-      }
-    },
-    components: {
-      VFacebookLogin
-    },
-    methods: {
-      login(res) {
-        this.$axios
-          .post(
-            'http://localhost:3000/auth/facebook_login',
-            { credential: res },
-            {}
-          )
-          .then(response => {
-            this.$store.commit('token/TOKEN', response.data.data);
-            this.$alertify.success('Login success');
-          })
-          .catch(error => {
-            console.log(error);
-          });
       }
     }
   }
