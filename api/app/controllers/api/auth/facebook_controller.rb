@@ -13,14 +13,15 @@ module Api
         access_token = params[:credential][:authResponse][:accessToken]
         info = AuthHelper::FacebookLogin.user_info(access_token)
         @user = User.find_by(email: info['email'])
+        puts 'Create user'
         create_user(info) unless @user
       end
 
       def create_user(info)
         @user = User.create!(
           email: info['email'],
-          password: Faker::Lorem.word,
-          password_confirmation: Faker::Lorem.word,
+          password: '123456',
+          password_confirmation: '123456',
           name: info['name'],
           picture: info['picture']['data']['url']
         )

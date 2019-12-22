@@ -1,10 +1,10 @@
 module Api
   class PostsController < ApplicationController
-    before_action :authenticate_request, only: %i[create update destroy]
+    before_action :authenticate_request, only: %i[index create update destroy]
 
     def index
       posts = paginate Post.all.order('random()').includes(:likes).includes(:user), per_page: 10
-      render json: serializer.new(posts)
+      render json: serializer.new(posts, params: { user: @current_user })
     end
 
     def create

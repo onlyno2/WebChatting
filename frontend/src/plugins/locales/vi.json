@@ -9,5 +9,7 @@
     "submit": "Gửi",
     "login": "Đăng Nhập",
     "password": "Mật khẩu",
-    "signup": "Đăng ký"
+    "logout": "Đăng xuất",
+    "likeCount": "Lượt thích",
+    "dislikeCount": "Lượt không thích"
 }

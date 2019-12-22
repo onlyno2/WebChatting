@@ -9,5 +9,7 @@
     "submit": "Submit",
     "login": "Login",
     "password": "Password",
-    "signup": "Signup"
+    "logout": "Log out",
+    "likeCount": "Like",
+    "dislikeCount": "Dislike"
 }

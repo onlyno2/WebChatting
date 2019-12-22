@@ -52,6 +52,12 @@
       </v-col>
       <v-col cols="12" sm="3"> </v-col>
     </v-row>
+    <v-progress-circular
+      indeterminate
+      color="blue lighten-1 mt-4"
+      size="70"
+      v-if="loading"
+    ></v-progress-circular>
   </v-container>
 </template>
 
@@ -69,7 +75,8 @@ export default {
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-      ]
+      ],
+      loading: false
     };
   },
   components: {
@@ -77,6 +84,7 @@ export default {
   },
   methods: {
     loginFacebook(res) {
+      this.loading = true;
       this.$axios
         .post(
           'http://localhost:3000/api/auth/facebook_login',
@@ -86,10 +94,12 @@ export default {
         .then(response => {
           this.$store.commit('token/TOKEN', response.data.message);
           this.$alertify.success('Login success');
-          this.$router.push('home')
+          this.$router.push('home');
+          this.loading = false;
         })
         .catch(error => {
-          console.log(error);
+          this.$alertify.error(error.response.data.errors);
+          this.loading = false;
         });
     },
     loginNormal() {
