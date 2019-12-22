@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 import Contact from "../views/Contact.vue";
 import Feed from '../views/Feed.vue';
 import UserProfile from '../views/UserProfile.vue';
+import Login from '../views/Login.vue';
+import Signup from '../views/Signup.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +38,16 @@ const routes = [
     path: '/users/:id',
     name: 'user',
     component: UserProfile
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: Signup
   },
   {
     path: '*',
