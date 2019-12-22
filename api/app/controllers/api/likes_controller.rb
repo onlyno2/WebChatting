@@ -11,7 +11,7 @@ module Api
     end
 
     def destroy
-      if @current_user.likes.find_by(post_id: params[:post_id])
+      if @current_user.likes.find_by(post_id: params[:id])
         success_response('Ok', :ok)
       else
         error_response('Delete failed')
