@@ -12,7 +12,7 @@
               <v-text-field
                 v-model="name"
                 :rules="nameRules"
-                label="Name"
+                :label="$t('name')"
                 outlined
                 required
                 clearable
@@ -31,7 +31,7 @@
                 :rules="passRules"
                 :type="show1 ? 'text' : 'password'"
                 name="input-10-1"
-                label="Password"
+                :label="$t('password')"
                 counter
                 outlined
                 @click:append="show1 = !show1"
@@ -42,7 +42,7 @@
                 :rules="passConfirmRules"
                 :type="show2 ? 'text' : 'password'"
                 name="input-10-2"
-                label="Confirm password"
+                :label="$t('passwordConfirm')"
                 counter
                 outlined
               ></v-text-field>

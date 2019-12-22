@@ -1,12 +1,13 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
+      <h1 class="mx-auto">{{ $t('place') }}</h1>
+      <h2 class="mx-auto">{{ $t('searchplace') }}</h2>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click="addMarker">{{ $t("add") }}</button>
       </label>
       <br/>
 

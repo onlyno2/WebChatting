@@ -8,6 +8,7 @@ import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import CreatePost from '../views/CreatePost.vue';
 import store from '../store/index';
+import EditProfile from '../views/EditProfile.vue';
 
 Vue.use(VueRouter);
 
@@ -69,6 +70,18 @@ const routes = [
     path: '/createpost',
     name: 'createpost',
     component: CreatePost,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['token/getToken']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: '/users/:id/edit',
+    name: 'editProfile',
+    component: EditProfile,
     beforeEnter: (to, from, next) => {
       if (!store.getters['token/getToken']) {
         next('/login');

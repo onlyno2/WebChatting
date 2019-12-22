@@ -5,7 +5,7 @@
       <v-col cols="12" sm="6">
         <v-card class="mx-auto mt-5">
           <v-card-title class="pb-0">
-            <h1>{{ $t('contact') }}</h1>
+            <h1 class="mx-auto">{{ $t('contact') }}</h1>
           </v-card-title>
           <v-card-text class="mt-4">
             <v-form ref="form" v-model="valid" lazy-validation>
@@ -43,7 +43,7 @@
             <v-btn
               :disabled="!valid"
               color="success"
-              class="mr-4"
+              class="mx-auto"
               @click="submitForm()"
             >
               {{ $t('submit') }}
@@ -90,13 +90,15 @@ export default {
           )
           .then(response => {
             console.log(response)
-            this.$alertify.success('Login success');
+            this.$alertify.success('Send success');
           })
           .catch(error => {
             console.log(error);
+            this.$alertify.error('Send error');
           });
       } else {
         console.log('error submit!!');
+        this.$alertify.error('Send error');
         return false;
       }
     }

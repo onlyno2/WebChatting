@@ -9,9 +9,16 @@
     "submit": "Submit",
     "login": "Login",
     "password": "Password",
+    "passwordConfirm": "Confirm password",
     "logout": "Log out",
     "likeCount": "Like",
     "dislikeCount": "Dislike",
     "post": "Post",
-    "createPost": "Create post"
+    "createPost": "Create post",
+    "profile": "Profile",
+    "add": "Add",
+    "searchplace": "Search and add a pin",
+    "place": "Where we are",
+    "editProfile": "editProfile",
+    "fileInput": "Input image"
 }
