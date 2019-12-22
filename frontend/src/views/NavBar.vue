@@ -10,6 +10,16 @@
         <v-list-item to="/">
           <v-list-item-content>{{ $t('home') }}</v-list-item-content>
         </v-list-item>
+        <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+          <v-btn text to="/feed">
+            {{ $t('feed') }}
+          </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+          <v-btn text to="/myposts">
+            {{ $t('myPost') }}
+          </v-btn>
+        </v-toolbar-items>
         <v-list-item to="/about">
           <v-list-item-content>{{ $t('about') }}</v-list-item-content>
         </v-list-item>
@@ -24,6 +34,16 @@
         <v-list-item to="/login" v-if="!loggedIn">
           <v-list-item-content>{{ $t('signin') }}</v-list-item-content>
         </v-list-item>
+        <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+          <v-btn text v-bind:to="userProfileLink">
+            {{ $t('profile') }}
+          </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+          <v-btn text @click="logout">
+            {{ $t('logout') }}
+          </v-btn>
+        </v-toolbar-items>
       </v-list>
     </v-navigation-drawer>
 
@@ -46,6 +66,16 @@
           {{ $t('home') }}
         </v-btn>
       </v-toolbar-items>
+      <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+        <v-btn text to="/feed">
+          {{ $t('feed') }}
+        </v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+        <v-btn text to="/myposts">
+          {{ $t('myPost') }}
+        </v-btn>
+      </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn text to="/about">
           {{ $t('about') }}
@@ -66,7 +96,12 @@
           {{ $t('signin') }}
         </v-btn>
       </v-toolbar-items>
-       <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+      <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
+        <v-btn text v-bind:to="userProfileLink">
+          {{ $t('profile') }}
+        </v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items class="hidden-xs-only" v-if="loggedIn">
         <v-btn text @click="logout">
           {{ $t('logout') }}
         </v-btn>
@@ -91,6 +126,12 @@ export default {
     loggedIn() {
       let token = this.$store.getters['token/getToken'];
       return !!token;
+    },
+    userId() {
+      return this.$store.getters['token/getUserId'];
+    },
+    userProfileLink() {
+      return '/users/' + this.$store.getters['token/getUserId'];
     }
   }
 };

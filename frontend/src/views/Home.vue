@@ -21,6 +21,7 @@
     <v-btn large color="error" @click="changeLocale('vi')">Vi</v-btn>
     <v-btn large color="success" @click="changeLocale('en')">En</v-btn>
   </v-card>
+
   </div>
 </template>
 
@@ -28,11 +29,9 @@
 
 export default {
   name: 'home',
-  components: {
-    
+  components: {    
   },
   methods: {
-    
   }
 };
 </script>

@@ -9,6 +9,7 @@ import Signup from '../views/Signup.vue';
 import CreatePost from '../views/CreatePost.vue';
 import store from '../store/index';
 import EditProfile from '../views/EditProfile.vue';
+import MyPost from '../views/MyPost.vue';
 
 Vue.use(VueRouter);
 
@@ -82,6 +83,18 @@ const routes = [
     path: '/users/:id/edit',
     name: 'editProfile',
     component: EditProfile,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['token/getToken']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: '/myposts',
+    name: 'myPosts',
+    component: MyPost,
     beforeEnter: (to, from, next) => {
       if (!store.getters['token/getToken']) {
         next('/login');

@@ -3,8 +3,8 @@ module Api
     class FacebookController < ApplicationController
       before_action :current_user
       def login
-        token = JsonWebToken.encode(payload: @user.id)
-        success_response(token)
+        response = { token: JsonWebToken.encode(payload: @user.id), user_id: @user.id }
+        success_response(response)
       end
 
       private

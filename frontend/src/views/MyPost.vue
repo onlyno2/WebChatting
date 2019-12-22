@@ -2,12 +2,12 @@
   <div>
     <v-container>
       <v-row
+        v-for="(post, index) in posts"
+        :key="index"
         align="center"
         justify="center"
       >
         <post-card
-          v-for="(post, index) in posts"
-          :key="index"
           :post="post.attributes"
           :userId="parseInt(post.relationships.user.data.id)"
           :postId="parseInt(post.id)"
@@ -33,14 +33,17 @@ export default {
   methods: {
     infiniteHandler($state) {
       this.$axios
-        .get(`http://localhost:3000/api/posts?page=${this.page}`, {
-          headers: {
-            Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+        .get(
+          `http://localhost:3000/api/users/${this.$store.getters['token/getUserId']}/user_posts?page=${this.page}`,
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+            }
           }
-        })
+        )
         .then(response => {
           if (response.data.data.length > 0) {
-            this.$store.commit('posts/APPEND_POST', response.data.data);
+            this.$store.commit('posts/APPEND_USER_POST', response.data.data);
             this.posts = this.posts.concat(response.data.data);
 
             $state.loaded();
