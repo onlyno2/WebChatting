@@ -33,7 +33,7 @@ const routes = [
     component: Feed
   },
   {
-    path: '/user/:id',
+    path: '/users/:id',
     name: 'user',
     component: UserProfile
   },
