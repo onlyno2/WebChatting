@@ -11,6 +11,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'mdbvue/lib/css/mdb.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import * as VueGoogleMaps from 'vue2-google-maps';
 // import * as mdbvue from 'mdbvue';
 
 Vue.use(Vuetify);
@@ -25,6 +26,12 @@ Vue.use(InfiniteLoading);
 //   Vue.component(component, mdbvue[component])
 // }
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyCWFNJB6YwnNd1ZTNT2ZKNorcGk9Pt9hjY",
+    libraries: "places" // necessary for places input
+  }
+});
 new Vue({
   router,
   store,
