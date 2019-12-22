@@ -56,17 +56,132 @@ export default {
     },
     userId: {
       type: Number
+    },
+    postId: {
+      type: Number
     }
   },
   methods: {
-    redirectToPost() {
-      this.$router.push({ name: 'home' });
+    like() {
+      if (this.liked) {
+        this.$axios
+          .delete(`http://localhost:3000/api/likes/${this.postId}`, {
+            headers: {
+              Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+            }
+          })
+          .then(response => {
+            this.$alertify.success(response.data.message);
+            this.post.like--;
+            this.liked = false;
+          })
+          .catch(error => {
+            this.$alertify.error(error.response.data.message);
+          });
+      } else {
+        if (this.disliked) {
+          this.$axios
+            .delete(`http://localhost:3000/api/likes/${this.postId}`, {
+              headers: {
+                Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+              }
+            })
+            .then(response => {
+              this.$alertify.success(response.data.message);
+              this.disliked = false;
+              this.post.dislike--;
+            })
+            .catch(error => {
+              this.$alertify.error(error.response.data.message);
+            });
+        }
+        this.$axios
+          .post(
+            'http://localhost:3000/api/likes',
+            {
+              post_id: this.postId,
+              like: true
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+              }
+            }
+          )
+          .then(response => {
+            this.$alertify.success(response.data.message);
+            this.post.like++;
+            this.liked = true;
+          })
+          .catch(error => {
+            this.$alertify.error(error.response.data.message);
+          });
+      }
+    },
+    dislike() {
+      if (this.disliked) {
+        this.$axios
+          .delete(`http://localhost:3000/api/likes/${this.postId}`, {
+            headers: {
+              Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+            }
+          })
+          .then(response => {
+            this.$alertify.success(response.data.message);
+            this.post.dislike--;
+            this.disliked = false;
+          })
+          .catch(error => {
+            this.$alertify.error(error.response.data.message);
+            this.liked = false;
+            this.post.like--;
+          });
+      } else {
+        if (this.liked) {
+          this.$axios
+            .delete(`http://localhost:3000/api/likes/${this.postId}`, {
+              headers: {
+                Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+              }
+            })
+            .then(response => {
+              this.$alertify.success(response.data.message);
+              this.post.like--;
+              this.liked = false;
+            })
+            .catch(error => {
+              this.$alertify.error(error.response.data.message);
+            });
+        }
+        this.$axios
+          .post(
+            'http://localhost:3000/api/likes',
+            {
+              post_id: this.postId,
+              like: false
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+              }
+            }
+          )
+          .then(response => {
+            this.$alertify.success(response.data.message);
+            this.post.dislike++;
+            this.disliked = true;
+          })
+          .catch(error => {
+            this.$alertify.error(error.response.data.message);
+          });
+      }
     }
   },
   components: {
     UserProfile
   },
   beforeMount() {
+    console.log(this.postId);
     if (this.post.reaction == true) this.liked = true;
     else if (this.post.reaction == false) this.disliked = true;
   }
