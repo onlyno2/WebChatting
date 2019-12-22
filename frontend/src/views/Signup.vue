@@ -5,10 +5,17 @@
       <v-col cols="12" sm="6">
         <v-card class="mx-auto mt-5">
           <v-card-title class="pb-0">
-            <h1 class="mx-auto">{{ $t('login') }}</h1>
+            <h1 class="mx-auto">{{ $t('signup') }}</h1>
           </v-card-title>
           <v-card-text class="mt-4">
             <v-form ref="form" v-model="valid" lazy-validation>
+              <v-text-field
+                v-model="name"
+                :rules="nameRules"
+                label="Name"
+                outlined
+                required
+              ></v-text-field>
               <v-text-field
                 v-model="email"
                 :rules="emailRules"
@@ -59,8 +66,12 @@
         valid: true,
         email: '',
         password: '',
+        name: '',
         show1: false,
         passRules: [
+          value => !!value || 'Required.'
+        ],
+        nameRules: [
           value => !!value || 'Required.'
         ],
         emailRules: [

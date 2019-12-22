@@ -16,10 +16,10 @@
         <v-list-item to="/contact">
           <v-list-item-content>{{ $t('contact') }}</v-list-item-content>
         </v-list-item>
-        <v-list-item to="/signup">
+        <v-list-item to="/about">
           <v-list-item-content>{{ $t('signup') }}</v-list-item-content>
         </v-list-item>
-        <v-list-item to="/login">
+        <v-list-item to="/about">
           <v-list-item-content>{{ $t('signin') }}</v-list-item-content>
         </v-list-item>
       </v-list>
@@ -60,7 +60,7 @@
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn text to="/login">
+        <v-btn text to="/about">
           {{ $t('signin') }}
         </v-btn>
       </v-toolbar-items>
