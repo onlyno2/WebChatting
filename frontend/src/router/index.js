@@ -6,6 +6,8 @@ import Feed from '../views/Feed.vue';
 import UserProfile from '../views/UserProfile.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
+import CreatePost from '../views/CreatePost.vue';
+
 
 Vue.use(VueRouter);
 
@@ -48,6 +50,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: Signup
+  },
+  {
+    path: '/createpost',
+    name: 'createpost',
+    component: CreatePost
   },
   {
     path: '*',
