@@ -35,14 +35,18 @@
               :disabled="!valid"
               color="success"
               class="mx-auto"
-              @click="submitForm()"
+              @click="loginNormal"
             >
               {{ $t('submit') }}
             </v-btn>
           </v-card-actions>
           <v-divider></v-divider>
           <v-card-actions>
-            <VFacebookLogin app-id="480114589280370" @login="login" class="mx-auto mb-3"></VFacebookLogin>
+            <VFacebookLogin
+              app-id="480114589280370"
+              @login="loginFacebook"
+              class="mx-auto mb-3"
+            ></VFacebookLogin>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -52,43 +56,60 @@
 </template>
 
 <script>
-  import { VFBLogin as VFacebookLogin } from 'vue-facebook-login-component';
+import { VFBLogin as VFacebookLogin } from 'vue-facebook-login-component';
 
-  export default {
-    data() {
-      return {
-        valid: true,
-        email: '',
-        password: '',
-        show1: false,
-        passRules: [
-          value => !!value || 'Required.'
-        ],
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-        ]
-      }
+export default {
+  data() {
+    return {
+      valid: true,
+      email: '',
+      password: '',
+      show1: false,
+      passRules: [value => !!value || 'Required.'],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    };
+  },
+  components: {
+    VFacebookLogin
+  },
+  methods: {
+    loginFacebook(res) {
+      this.$axios
+        .post(
+          'http://localhost:3000/api/auth/facebook_login',
+          { credential: res },
+          {}
+        )
+        .then(response => {
+          this.$store.commit('token/TOKEN', response.data.message);
+          this.$alertify.success('Login success');
+          this.$router.push('home')
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
-    components: {
-      VFacebookLogin
-    },
-    methods: {
-      login(res) {
-        this.$axios
-          .post(
-            'http://localhost:3000/auth/facebook_login',
-            { credential: res },
-            {}
-          )
-          .then(response => {
-            this.$store.commit('token/TOKEN', response.data.data);
-            this.$alertify.success('Login success');
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
+    loginNormal() {
+      this.$axios
+        .post('http://localhost:3000/api/auth/login', {
+          user: {
+            email: this.email,
+            password: this.password
+          }
+        })
+        .then(response => {
+          console.log(response.data.message);
+          this.$store.commit('token/TOKEN', response.data.message);
+          this.$alertify.success('Success');
+          this.$router.push('home');
+        })
+        .catch(error => {
+          this.$alertify.error(error.response.data.errors);
+        });
     }
   }
+};
 </script>

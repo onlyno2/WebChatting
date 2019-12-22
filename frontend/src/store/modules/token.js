@@ -4,6 +4,9 @@ const token = {
   mutations: {
     TOKEN(state, token) {
       state.token = token;
+    },
+    LOG_OUT(state) {
+      state.token = null;
     }
   },
   getters: {
