@@ -2,12 +2,12 @@
   <div>
     <v-container>
       <v-row
-        v-for="(post, index) in posts"
-        :key="index"
         align="center"
         justify="center"
       >
         <post-card
+          v-for="(post, index) in posts"
+          :key="index"
           :post="post.attributes"
           :userId="parseInt(post.relationships.user.data.id)"
           :postId="parseInt(post.id)"
