@@ -11,6 +11,7 @@
       alt="asd"
     />
     <v-btn to="/feed">feed</v-btn>
+    <v-btn to="/users/3">test</v-btn>
   </div>
 </template>
 

@@ -1,9 +1,11 @@
 <template>
   <v-card>
     <v-container>
-      <div class="purple lighten-5 text-center font-weight-bold display-2 profile">
-       <span>PROFILE</span>
-      </div>  
+      <div
+        class="purple lighten-5 text-center font-weight-bold display-2 profile"
+      >
+        <span>PROFILE</span>
+      </div>
       <v-row align="center" justify="center">
         <v-col md="4">
           <v-avatar size="200">
@@ -35,6 +37,14 @@
           </v-avatar>
         </v-col>
       </v-row>
+      <v-row class="mt-4" align="center" justify="center" v-if="loggedIn">
+        <v-col md="4">
+          <v-btn block to="/edit">Edit</v-btn>
+        </v-col>
+        <v-col md="4">
+          <v-btn block color="success" to="/createpost">{{ $t('createPost') }}</v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </v-card>
 </template>
@@ -47,13 +57,21 @@ export default {
     };
   },
   methods: {},
+  computed: {
+    loggedIn() {
+      return !!this.$route.params.id;
+    }
+  },
   props: {
     userId: {
       type: Number
     }
   },
   beforeMount() {
-    console.log(this.userId);
+    if (!this.userId) {
+      this.userId = this.$route.params.id;
+    }
+
     this.$axios
       .get(`http://localhost:3000/api/users/${this.userId}`)
       .then(response => {
@@ -65,12 +83,12 @@ export default {
   }
 };
 </script>
-  
+
 <style scoped>
 p {
-    margin: 5px;
-    padding: 5px;
-  }
+  margin: 5px;
+  padding: 5px;
+}
 .profile {
   padding: 10px;
 }

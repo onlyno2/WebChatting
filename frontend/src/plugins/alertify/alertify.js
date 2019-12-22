@@ -23,7 +23,7 @@ const opt = {
   // notifier defaults
   notifier: {
     // auto-dismiss wait time (in seconds)
-    delay: 4,
+    delay: 2,
     // default position
     position: 'bottom-right',
     // adds a close button to notifier messages

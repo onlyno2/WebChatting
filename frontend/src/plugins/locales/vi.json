@@ -11,5 +11,7 @@
     "password": "Mật khẩu",
     "logout": "Đăng xuất",
     "likeCount": "Lượt thích",
-    "dislikeCount": "Lượt không thích"
+    "dislikeCount": "Lượt không thích",
+    "post": "Tạo",
+    "createPost": "Tạo bài đăng mới"
 }
