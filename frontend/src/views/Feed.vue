@@ -7,7 +7,7 @@
         align="center"
         justify="center"
       >
-        <post-card :post="post.attributes"> </post-card>
+        <post-card :post="post.attributes" :userId="parseInt(post.relationships.user.data.id)"></post-card>
       </v-row>
       <infinite-loading @infinite="infiniteHandler"></infinite-loading>
     </v-container>
@@ -28,11 +28,14 @@ export default {
   },
   methods: {
     infiniteHandler($state) {
-      console.log(`http://localhost:3000/api/posts?page=${this.page}`);
+      
       this.$axios
-        .get(`http://localhost:3000/api/posts?page=${this.page}`)
+        .get(`http://localhost:3000/api/posts?page=${this.page}`, {
+          headers: {
+            Authorization: `Bearer ${this.$store.getters['token/getToken']}`
+          } 
+        })
         .then(response => {
-          console.log(response.data.data.length);
           if(response.data.data.length > 0) {
             this.$store.commit('posts/APPEND_POST', response.data.data);
             this.posts = this.posts.concat(response.data.data);
@@ -44,11 +47,12 @@ export default {
           }
         })
         .catch(error => {
-          console.log(error);
+          this.$alertify.error(error.response.data.errors);
         });
     },
-  },
-  beforeMount() {
+    beforeMount() {
+      console.log(`Bearer ${this.$store.getters['token/getToken']}`);
+    },
   }
 };
 </script>

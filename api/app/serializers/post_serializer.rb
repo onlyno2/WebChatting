@@ -18,5 +18,14 @@ class PostSerializer
     post.user.picture
   end
 
+  attribute :reaction do |post, params|
+    reaction = params[:user].likes.find_by(post_id: post.id)
+    if reaction.nil?
+      nil
+    else
+      reaction.like
+    end
+  end
+
   belongs_to :user
 end
