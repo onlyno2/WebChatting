@@ -71,7 +71,7 @@ export default {
             }
           })
           .then(response => {
-            this.$alertify.success(response.data.message);
+            console.log(response);
             this.post.like--;
             this.liked = false;
           })
@@ -87,7 +87,7 @@ export default {
               }
             })
             .then(response => {
-              this.$alertify.success(response.data.message);
+              console.log(response);
               this.disliked = false;
               this.post.dislike--;
             })
@@ -127,7 +127,7 @@ export default {
             }
           })
           .then(response => {
-            this.$alertify.success(response.data.message);
+            console.log(response);
             this.post.dislike--;
             this.disliked = false;
           })
@@ -145,7 +145,7 @@ export default {
               }
             })
             .then(response => {
-              this.$alertify.success(response.data.message);
+              console.log(response);
               this.post.like--;
               this.liked = false;
             })

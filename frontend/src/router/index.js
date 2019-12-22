@@ -1,13 +1,13 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Contact from "../views/Contact.vue";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import Contact from '../views/Contact.vue';
 import Feed from '../views/Feed.vue';
 import UserProfile from '../views/UserProfile.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import CreatePost from '../views/CreatePost.vue';
-
+import store from '../store/index';
 
 Vue.use(VueRouter);
 
@@ -24,22 +24,36 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: "/contact",
-    name: "contact",
+    path: '/contact',
+    name: 'contact',
     component: Contact
   },
   {
     path: '/feed',
     name: 'feed',
-    component: Feed
+    component: Feed,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['token/getToken']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/users/:id',
     name: 'user',
-    component: UserProfile
+    component: UserProfile,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['token/getToken']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/login',
@@ -54,7 +68,14 @@ const routes = [
   {
     path: '/createpost',
     name: 'createpost',
-    component: CreatePost
+    component: CreatePost,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['token/getToken']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '*',

@@ -11,5 +11,7 @@
     "password": "Password",
     "logout": "Log out",
     "likeCount": "Like",
-    "dislikeCount": "Dislike"
+    "dislikeCount": "Dislike",
+    "post": "Post",
+    "createPost": "Create post"
 }
