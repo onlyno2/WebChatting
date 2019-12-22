@@ -3,7 +3,7 @@ module Api
     before_action :authenticate_request, only: %i[create update destroy]
 
     def index
-      posts = paginate Post.all.order('random()')
+      posts = paginate Post.all.order('random()').includes(:likes).includes(:user), per_page: 10
       render json: serializer.new(posts)
     end
 

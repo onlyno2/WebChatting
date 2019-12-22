@@ -1,6 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import token from "./modules/token";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import token from './modules/token';
+import post from './modules/post';
 
 Vue.use(Vuex);
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    token: token
+    token: token,
+    posts: post
   }
 });
