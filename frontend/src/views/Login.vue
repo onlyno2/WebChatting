@@ -34,14 +34,14 @@
               :disabled="!valid"
               color="success"
               class="mx-auto"
-              @click="submitForm()"
+              @click="loginNormal()"
             >
               {{ $t('submit') }}
             </v-btn>
           </v-card-actions>
           <v-divider></v-divider>
           <v-card-actions>
-            <VFacebookLogin app-id="480114589280370" @login="login" class="mx-auto mb-3"></VFacebookLogin>
+            <VFacebookLogin app-id="480114589280370" @login="loginFacebook" class="mx-auto mb-3"></VFacebookLogin>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -73,20 +73,36 @@
       VFacebookLogin
     },
     methods: {
-      login(res) {
+      loginFacebook(res) {
         this.$axios
           .post(
-            'http://localhost:3000/auth/facebook_login',
+            'http://localhost:3000/api/auth/facebook_login',
             { credential: res },
             {}
           )
           .then(response => {
-            this.$store.commit('token/TOKEN', response.data.data);
+            this.$store.commit('token/TOKEN', response.data.message);
             this.$alertify.success('Login success');
+            this.$router.push('home');
           })
           .catch(error => {
             console.log(error);
           });
+      },
+      loginNormal() {
+        this.$axios.post('http://localhost:3000/api/auth/login', {
+          user: {
+            email: this.email,
+            password: this.password
+          }
+        }).then(response => {
+          console.log(response.data);
+          this.$store.commit('token/TOKEN', response.data.message);
+          this.$alertify.success('Login success');
+          this.$router.push('home');
+        }).catch(error => {
+          console.log(error);
+        })
       }
     }
   }

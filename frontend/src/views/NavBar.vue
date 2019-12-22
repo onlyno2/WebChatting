@@ -31,7 +31,7 @@
       app
     >
       <span class="hidden-sm-and-up">
-        <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
+        <v-toolbar-nav-icon @click="sidebar = !sidebar"></v-toolbar-nav-icon>
       </span>
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
@@ -54,13 +54,13 @@
           {{ $t('contact') }}
         </v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="hidden-xs-only">
+      <v-toolbar-items class="hidden-xs-only" v-if="!loggedIn">
         <v-btn text to="/signup">
           {{ $t('signup') }}
         </v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn text to="/about">
+      <v-toolbar-items class="hidden-xs-only" v-if="!loggedIn">
+        <v-btn text to="/login">
           {{ $t('signin') }}
         </v-btn>
       </v-toolbar-items>
@@ -69,14 +69,17 @@
 </template>
 <script>
 export default {
-  mounted() {
-    console.log(this.$t('home'));
-  },
   data() {
     return {
       appTitle: 'Web Chatting',
       sidebar: false
     };
+  },
+  computed: {
+    loggedIn() {
+      let token = this.$store.getters['token/getToken']
+      return !!token;
+    }
   }
 };
 </script>
